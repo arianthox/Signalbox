@@ -2,11 +2,12 @@ SHELL := /bin/zsh
 NODE_BIN := $(HOME)/.nvm/versions/node/v22.21.1/bin
 NPM := PATH="$(NODE_BIN):$(PATH)" npm
 
-.PHONY: help install dev dev-electron test typecheck build lint package verify clean
+.PHONY: help install rebuild-native dev dev-electron test typecheck build lint package verify clean
 
 help:
 	@printf "Signalbox tasks:\n"
 	@printf "  make install       Install npm dependencies\n"
+	@printf "  make rebuild-native Rebuild native Electron addons for local macOS\n"
 	@printf "  make dev           Start the Vite renderer dev server\n"
 	@printf "  make dev-electron  Start the Electron app in development mode\n"
 	@printf "  make test          Run unit tests\n"
@@ -19,6 +20,10 @@ help:
 
 install:
 	$(NPM) install
+	$(NPM) run rebuild:native
+
+rebuild-native:
+	$(NPM) run rebuild:native
 
 dev:
 	$(NPM) run dev

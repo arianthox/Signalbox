@@ -1,4 +1,6 @@
 node_modules/
+.electron-gyp/
+.signalbox-home/
 dist/
 dist-electron/
 release/
